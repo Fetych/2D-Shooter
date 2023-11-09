@@ -78,6 +78,7 @@ public class Weapon : MonoBehaviour
         {
             if (CaneFire)
             {
+                Animator.SetTrigger("Fire");
                 Left--;                
                 TextAmmo.text = Left.ToString();
                 SpawnBullet = Instantiate(Bullet, SpawnTransformShot.transform.position, transform.rotation);
