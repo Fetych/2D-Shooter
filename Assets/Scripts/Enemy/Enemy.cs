@@ -22,8 +22,8 @@ public class Enemy : MonoBehaviour
     {
         Vector2 RayTr = new Vector2(Distance * X, Ray.localPosition.y);
         Vector2 Ray2 = new Vector2( X, Ray.localPosition.y);
-        Debug.DrawRay(transform.position, RayTr, Color.black);
-        RaycastHit2D Hit = Physics2D.Raycast(transform.position, Ray2, Distance, GetComponent<Stats>().LayerMask);
+        Debug.DrawRay(Ray.position, RayTr, Color.black);
+        RaycastHit2D Hit = Physics2D.Raycast(Ray.position, Ray2, Distance, GetComponent<Stats>().LayerMask);
         if (Hit.collider != null && Hit.collider.GetComponent<Health>() != null)
         {
             CaneFire = true;

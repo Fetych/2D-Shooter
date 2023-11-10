@@ -10,9 +10,11 @@ public class WeaponEnemy : MonoBehaviour
     [SerializeField] private Transform SpawnTransformShot;
     [SerializeField] private Stats Stats;
     GameObject SpawnBullet;
+    [SerializeField] private Animator Animator;
 
     public void Fire()
     {
+        Animator.SetTrigger("Fire");
         SpawnBullet = Instantiate(Bullet, SpawnTransformShot.transform.position, transform.rotation);
         SpawnBullet.GetComponent<Bullet>().Damage = Stats.Damage;
         SpawnBullet.GetComponent<Bullet>().BulletMask = Stats.LayerMask;

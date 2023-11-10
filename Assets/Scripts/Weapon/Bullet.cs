@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    float Speed = 5, Distance = 0;
+    public float Speed = 5, Distance = 0;
     public int Damage;
     public LayerMask BulletMask;
     public int Index;

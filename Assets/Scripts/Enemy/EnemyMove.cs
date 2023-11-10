@@ -7,10 +7,10 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] Health Health;
     [SerializeField] private WeaponEnemy WeaponEnemy;
 
-    public Rigidbody2D EnemyRb;
     public float TimeStay, TimeToRevert;
     public float currentState;
     public bool Check;
+    public Animator Animator;
 
     private const float IDLE_STATE = 0;
     private const float WALK_STATE = 1;
@@ -38,8 +38,6 @@ public class EnemyMove : MonoBehaviour
 
     private void Update()
     {
-        //EnemyRb.velocity = Vector2.right * Speed;
-        //EnemyRb.velocity = new Vector2(Speed, EnemyRb.velocity.y);
         //if (GetComponent<EnemyDamage>().TriggerAttack == false)
         //{
         //    if (TimeStay >= TimeToRevert)
@@ -63,10 +61,13 @@ public class EnemyMove : MonoBehaviour
             case IDLE_STATE:
                 // gameObject.GetComponent<EnemyDamage>().anim.SetBool("Walk", false);
                 TimeStay += Time.deltaTime;
+                Animator.SetBool("Walk", false);
                 break;
             case WALK_STATE:
                 //gameObject.GetComponent<EnemyDamage>().anim.SetBool("Walk", true);
-                EnemyRb.velocity = new Vector2(Speed, EnemyRb.velocity.y);
+                Animator.SetBool("Walk", true);
+                //EnemyRb.velocity = new Vector2(Speed, EnemyRb.velocity.y);
+                GetComponent<Stats>().Rigidbody.velocity = new Vector2(Speed, GetComponent<Stats>().Rigidbody.velocity.y);
                 break;
             case REVERT_STATE:
                 Flip();
@@ -76,6 +77,7 @@ public class EnemyMove : MonoBehaviour
             case ATTACK_STATE:
                 //gameObject.GetComponent<EnemyDamage>().anim.SetBool("Walk", false);
                 currentState = WALK_STATE;
+                Animator.SetBool("Walk", false);
                 break;
         }
     }
