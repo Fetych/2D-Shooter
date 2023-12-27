@@ -9,8 +9,13 @@ public class WeaponEnemy : MonoBehaviour
     [SerializeField] private GameObject Bullet;
     [SerializeField] private Transform SpawnTransformShot;
     [SerializeField] private Stats Stats;
-    GameObject SpawnBullet;
-    [SerializeField] private Animator Animator;
+    private GameObject SpawnBullet;
+    private Animator Animator;
+
+    private void Awake()
+    {
+        Animator = GetComponent<Animator>();
+    }
 
     public void Fire()
     {

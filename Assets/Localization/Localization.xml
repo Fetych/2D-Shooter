@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Keys xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Key Name="Menu">
+		<Translates/>
+	</Key>
+	<Key Name="Start_Key">
+		<Translates>
+			<en-us>Start</en-us>
+			<ru>Старт</ru>
+		</Translates>
+	</Key>
+	<Key Name="Setting_Key">
+		<Translates>
+			<en-us>Setting</en-us>
+			<ru>Настройки</ru>
+		</Translates>
+	</Key>
+	<Key Name="Exit_Key">
+		<Translates>
+			<en-us>Exit</en-us>
+			<ru>Выход</ru>
+		</Translates>
+	</Key>
+	<Key Name="Music_Key">
+		<Translates>
+			<en-us>Music</en-us>
+			<ru>Музыка</ru>
+		</Translates>
+	</Key>
+	<Key Name="Sound_Key">
+		<Translates>
+			<en-us>Sound</en-us>
+			<ru>Звук</ru>
+		</Translates>
+	</Key>
+	<Key Name="Permission_Key">
+		<Translates>
+			<en-us>Permission</en-us>
+			<ru>Разрешение</ru>
+		</Translates>
+	</Key>
+	<Key Name="Background_Key">
+		<Translates>
+			<en-us>Background</en-us>
+			<ru>Фон</ru>
+		</Translates>
+	</Key>
+	<Key Name="Back_Key">
+		<Translates>
+			<en-us>Back</en-us>
+			<ru>Назад</ru>
+		</Translates>
+	</Key>
+	<Key Name="Language_Key">
+		<Translates>
+			<en-us>Language</en-us>
+			<ru>Язык</ru>
+		</Translates>
+	</Key>
+</Keys>

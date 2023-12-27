@@ -8,8 +8,8 @@ public class Interface : MonoBehaviour
 {
     public GameObject GameOverPanel;
     [Header("—чет")]
-    [SerializeField] private TextMeshProUGUI Score;
-    int ScoreNum = 0;
+    public TextMeshProUGUI Score;
+    public int ScoreNum = 0;
 
     void Awake()
     {
