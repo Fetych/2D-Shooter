@@ -3,7 +3,6 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     public Interface Interface;
-    public Weapon Weapon;
 
     float Speed;
     float JumpForce;
@@ -12,6 +11,8 @@ public class Move : MonoBehaviour
     Animator Animator;
     PlayerControl PlayerControl;
     bool facing = true;
+    bool Run;
+    int IndexSpeed = 1;
     Vector2 MoveDirection;
 
     private void Awake()
@@ -21,6 +22,10 @@ public class Move : MonoBehaviour
         Speed = GetComponent<Stats>().Speed;
         JumpForce = GetComponent<Stats>().JumpForce;
         PlayerControl.Player.Jump.performed += context => Jump();
+        PlayerControl.Player.Run.performed += context => ChangeSpeed(true);
+        PlayerControl.Player.Run.canceled += context => ChangeSpeed(false);
+        PlayerControl.Player.Sit.performed += context => SitDown(true);
+        PlayerControl.Player.Sit.canceled += context => SitDown(false);
     }
 
     private void OnEnable()
@@ -50,17 +55,24 @@ public class Move : MonoBehaviour
         }
         if (MoveDirection.x <= -0.2f)
         {
-            Animator.SetBool("Walk", true);
+            if(IndexSpeed == 1)
+                Animator.SetBool("Walk", true);
+            else
+                Animator.SetBool("Run", true);
         }
         else if (MoveDirection.x > 0.2)
         {
-            Animator.SetBool("Walk", true);
+            if (IndexSpeed == 1)
+                Animator.SetBool("Walk", true);
+            else
+                Animator.SetBool("Run", true);
         }
         else
         {
-            Animator.SetBool("Walk", false);
+             Animator.SetBool("Walk", false);
+             Animator.SetBool("Run", false);
         }
-        GetComponent<Stats>().Rigidbody.velocity = new Vector2(MoveDirection.x * Speed, GetComponent<Stats>().Rigidbody.velocity.y);
+        GetComponent<Stats>().Rigidbody.velocity = new Vector2(MoveDirection.x * Speed * IndexSpeed, GetComponent<Stats>().Rigidbody.velocity.y);
     }
 
     void Jump()
@@ -78,15 +90,31 @@ public class Move : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
-        if (facing == false)
+    }
+
+    void ChangeSpeed(bool running)
+    {
+        if (running)
         {
-            Weapon.Offset = 180;
-            Weapon.BullIndex = -1;
+            IndexSpeed = 2;
         }
         else
         {
-            Weapon.Offset = 0;
-            Weapon.BullIndex = 1;
+            IndexSpeed = 1;
+        }
+    }
+    void SitDown(bool Sit)
+    {
+        if (Sit)
+        {
+            Animator.SetBool("Walk", false);
+            Animator.SetBool("Run", false);
+            Animator.SetBool("Sit", true);
+            MoveDirection.x = 0;
+        }
+        else
+        {
+            Animator.SetBool("Sit", false);
         }
     }
 }
