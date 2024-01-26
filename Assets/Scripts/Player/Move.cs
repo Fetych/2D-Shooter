@@ -4,7 +4,7 @@ public class Move : MonoBehaviour
 {
     public Interface Interface;
 
-    float Speed;
+    //float Speed;
     float JumpForce;
     public bool CheckGround = false;
 
@@ -19,7 +19,7 @@ public class Move : MonoBehaviour
     {
         PlayerControl = new PlayerControl();
         Animator = GetComponent<Animator>();
-        Speed = GetComponent<Stats>().Speed;
+        //Speed = GetComponent<Stats>().Speed;
         JumpForce = GetComponent<Stats>().JumpForce;
         PlayerControl.Player.Jump.performed += context => Jump();
         PlayerControl.Player.Run.performed += context => ChangeSpeed(true);
@@ -42,6 +42,10 @@ public class Move : MonoBehaviour
         MoveDirection = PlayerControl.Player.Move.ReadValue<Vector2>();
         HorizontalMove();
     }
+    private void FixedUpdate()
+    {
+        GetComponent<Stats>().Rigidbody.velocity = new Vector2(MoveDirection.x * GetComponent<Stats>().Speed * IndexSpeed, GetComponent<Stats>().Rigidbody.velocity.y);
+    }
 
     void HorizontalMove()
     {
@@ -56,23 +60,35 @@ public class Move : MonoBehaviour
         if (MoveDirection.x <= -0.2f)
         {
             if(IndexSpeed == 1)
+            {
                 Animator.SetBool("Walk", true);
+                Animator.SetBool("Run", false);
+            }
             else
+            {
+                Animator.SetBool("Walk", false);
                 Animator.SetBool("Run", true);
+            }
         }
         else if (MoveDirection.x > 0.2)
         {
             if (IndexSpeed == 1)
+            {
                 Animator.SetBool("Walk", true);
+                Animator.SetBool("Run", false);
+            }
             else
+            {
+                Animator.SetBool("Walk", false);
                 Animator.SetBool("Run", true);
+            }
         }
         else
         {
              Animator.SetBool("Walk", false);
              Animator.SetBool("Run", false);
         }
-        GetComponent<Stats>().Rigidbody.velocity = new Vector2(MoveDirection.x * Speed * IndexSpeed, GetComponent<Stats>().Rigidbody.velocity.y);
+        //GetComponent<Stats>().Rigidbody.velocity = new Vector2(MoveDirection.x * Speed * IndexSpeed, GetComponent<Stats>().Rigidbody.velocity.y);
     }
 
     void Jump()

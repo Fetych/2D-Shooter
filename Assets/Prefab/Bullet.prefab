@@ -146,6 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6537cfb820e540c449bbd567584ecc7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 5
+  Distance: 0
+  BullTime: 2
   Damage: 0
   BulletMask:
     serializedVersion: 2

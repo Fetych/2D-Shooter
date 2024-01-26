@@ -134,8 +134,8 @@ TextureImporter:
         serializedVersion: 2
         x: 45
         y: 0
-        width: 39
-        height: 70
+        width: 38
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,8 +155,8 @@ TextureImporter:
         serializedVersion: 2
         x: 174
         y: 0
-        width: 39
-        height: 70
+        width: 37
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +176,8 @@ TextureImporter:
         serializedVersion: 2
         x: 305
         y: 0
-        width: 39
-        height: 70
+        width: 34
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,8 +197,8 @@ TextureImporter:
         serializedVersion: 2
         x: 431
         y: 0
-        width: 39
-        height: 70
+        width: 36
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,7 +219,7 @@ TextureImporter:
         x: 556
         y: 0
         width: 39
-        height: 70
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,8 +239,8 @@ TextureImporter:
         serializedVersion: 2
         x: 686
         y: 0
-        width: 39
-        height: 70
+        width: 37
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,8 +260,8 @@ TextureImporter:
         serializedVersion: 2
         x: 817
         y: 0
-        width: 39
-        height: 70
+        width: 34
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,8 +281,8 @@ TextureImporter:
         serializedVersion: 2
         x: 945
         y: 0
-        width: 39
-        height: 70
+        width: 34
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

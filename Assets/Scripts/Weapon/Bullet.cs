@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float Speed = 5, Distance = 0;
+    public float Speed = 5, Distance = 0, BullTime;
     public int Damage;
     public LayerMask BulletMask;
     public int Index;
@@ -20,7 +20,14 @@ public class Bullet : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        //transform.Translate(Vector2.right * Speed * Time.deltaTime);
         transform.Translate(Vector2.right * Speed * Time.deltaTime * Index);
+        BullTime -= Time.deltaTime;
+        BulletTimer();
+    }
+
+    public void BulletTimer()
+    {
+        if(BullTime <= 0)
+            Destroy(gameObject);
     }
 }
