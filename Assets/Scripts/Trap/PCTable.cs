@@ -3,28 +3,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PCTable : MonoBehaviour
+public class PCTable : MonoBehaviour, IEnvironmentObject
 {
-    [SerializeField] TextMeshProUGUI InteractionText;
+    [SerializeField] EnvironmentObject EnvironmentObject;
+    public EnvironmentObject EnvironmentObjects { get => EnvironmentObject; }
+    [SerializeField] private GameObject PCImage;
+    [SerializeField] private int CardIndex;
+    [SerializeField] private GameObject Trap;
+    [SerializeField] private List<ElectricTrap> ElectricTraps;
+    [SerializeField] private List<int> IndexCards;
+    public GameObject Player;
 
-    private void Awake()
+    private void Start()
     {
-        InteractionText.enabled = false;
+        ElectricTraps.Add(Trap.GetComponentInChildren<ElectricTrap>());
+        PCImage.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OpenPC(Infentory infentory, GameObject Player)
     {
-        if(collision.GetComponent<ILivingOrganisms>() != null && collision.GetComponent<ILivingOrganisms>().LivingOrganisms == LivingOrganisms.Player)
+        PCImage.SetActive(true);
+        this.Player = Player;
+        Player.GetComponent<Move>().enabled = false;
+        Player.GetComponent<Shot>().enabled = false;
+        for (int i = 0; i < infentory.Cell.Count; i++)
         {
-            InteractionText.enabled = true;
+            if (infentory.Cell[i].GetComponent<Cell>().CellObject != null && infentory.Cell[i].GetComponent<Cell>().CellObject.GetComponent<CardUIInfentory>() != null)
+            {
+                IndexCards.Add(infentory.Cell[i].GetComponent<Cell>().CellObject.GetComponent<CardUIInfentory>().IndexCard);
+            }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void CloseTable()
     {
-        if (collision.GetComponent<ILivingOrganisms>() != null && collision.GetComponent<ILivingOrganisms>().LivingOrganisms == LivingOrganisms.Player)
+        PCImage.SetActive(false);
+        IndexCards.Clear();
+        Debug.Log(gameObject);
+        Debug.Log(Player);
+        Player.GetComponent<Move>().enabled = true;
+        Player.GetComponent<Shot>().enabled = true;
+        Player = null;
+    }
+
+    public void CompletingTask()
+    {
+        if(IndexCards.Count > 0)
         {
-            InteractionText.enabled = false;
+            for (int i = 0; i < IndexCards.Count; i++)
+            {
+                if (CardIndex == IndexCards[i])
+                {
+                    Debug.Log(0);
+                    while (ElectricTraps.Count > 0)
+                    {
+                        ElectricTraps[0].OffTrap();
+                        ElectricTraps.RemoveAt(0);
+                    }
+                    break;
+                }
+            }
         }
     }
 }

@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 3151915289922858282}
   - component: {fileID: 3151915289922858276}
   - component: {fileID: 3151915289922858283}
+  - component: {fileID: 1899536645823348048}
   m_Layer: 5
   m_Name: Access Card Image
   m_TagString: Untagged
@@ -153,3 +154,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1899536645823348048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3151915289922858281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f950378283b531f42890d36592718feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

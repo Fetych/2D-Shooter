@@ -11,8 +11,6 @@ public class LocalizationText : MonoBehaviour
     public void Start()
     {
         LocalizeText();
-        //Localize();
-        //LocalizationManager.OnLanguageChange += OnLanguageChange;
     }
 
     public void LocalizeText()
@@ -35,9 +33,7 @@ public class LocalizationText : MonoBehaviour
     void Init()
     {
         text = GetComponent<TextMeshProUGUI>();
-        //Debug.Log(text);
         key = text.text;
-        //Debug.Log(key);
     }
 
     public void Localize(string newKey = null)

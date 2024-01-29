@@ -57,4 +57,16 @@
 			<ru>Язык</ru>
 		</Translates>
 	</Key>
+	<Key Name="Money_Key">
+		<Translates>
+			<en-us>Money: </en-us>
+			<ru>Деньги: </ru>
+		</Translates>
+	</Key>
+	<Key Name="Card_Key">
+		<Translates>
+			<en-us>Card № </en-us>
+			<ru>Карта № </ru>
+		</Translates>
+	</Key>
 </Keys>

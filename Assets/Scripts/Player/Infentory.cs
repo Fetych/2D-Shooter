@@ -7,9 +7,9 @@ public class Infentory : MonoBehaviour
 {
     PlayerControl PlayerControl;
     bool InfentoryOpen;
-    int IndexInfentory;
+    public int IndexInfentory;
     [SerializeField] GameObject InfentoryObject;
-    [SerializeField] List<GameObject> Cell;
+    public List<GameObject> Cell;
     [SerializeField] Stats Stats;
     [SerializeField] TextMeshProUGUI HP, Armor, Damage;
 
@@ -34,7 +34,7 @@ public class Infentory : MonoBehaviour
         InfentoryObject.SetActive(false);
         for (int i = 0; i < Cell.Count; i++)
         {
-            if (Cell[i].GetComponent<Cell>().TheCellIsOccupied != true)
+            if (Cell[i].GetComponent<Cell>().CellObject != null)
             {
                 IndexInfentory = i;
                 break;
@@ -45,7 +45,8 @@ public class Infentory : MonoBehaviour
     {
         Object.SetParent(Cell[IndexInfentory].transform);
         Object.localPosition = new Vector3(0, 0, 0);
-        Cell[IndexInfentory].GetComponent<Cell>().TheCellIsOccupied = true;
+        //Cell[IndexInfentory].GetComponent<Cell>().TheCellIsOccupied = true;
+        Cell[IndexInfentory].GetComponent<Cell>().CellObject = Object.gameObject;
         IndexInfentory++;
     }
     void CheckInfentory()

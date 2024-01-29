@@ -1,5 +1,6 @@
 public enum EnvironmentObject
 {
     Locker,
-    PCTable
+    PCTable,
+    Turnstile
 }

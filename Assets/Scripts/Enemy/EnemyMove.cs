@@ -21,6 +21,7 @@ public class EnemyMove : MonoBehaviour
 
     private void Start()
     {
+        Animator = GetComponent<Animator>();
         Health = GetComponent<Health>();
         currentState = WALK_STATE;
         TimeStay = 0;
@@ -59,7 +60,6 @@ public class EnemyMove : MonoBehaviour
         switch (currentState)
         {
             case IDLE_STATE:
-                // gameObject.GetComponent<EnemyDamage>().anim.SetBool("Walk", false);
                 TimeStay += Time.deltaTime;
                 Animator.SetBool("Walk", false);
                 break;
@@ -91,10 +91,5 @@ public class EnemyMove : MonoBehaviour
         Vector3 canvasScaler = Health.HealthCanvas.transform.localScale;
         canvasScaler.x *= -1;
         Health.HealthCanvas.transform.localScale = canvasScaler;
-        GetComponent<Enemy>().X *= -1;
-        if(transform.localScale.x > 0)
-            WeaponEnemy.BullIndex = 1;
-        else
-            WeaponEnemy.BullIndex = -1;
     }
 }

@@ -200,6 +200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961b0c9ac065c3643af50d7a72d3ab43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CollectionFacilitie: 0
+  TextString: Card_Key
+  IndexCard: 3
   Card: {fileID: 3151915289922858281, guid: 1a5ec769da8093f45b3264f59633bcfb, type: 3}
   Image: {fileID: 2368007996869609084}
   Sprite:
@@ -213,7 +216,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ff4a42e4fb12ed8419d91e351a47b058, type: 3}
   - {fileID: 21300000, guid: bf7d825ede0e2f148939ce22cdb156e6, type: 3}
   - {fileID: 21300000, guid: 82e1fd9d00ed7dd42b270b1751f49530, type: 3}
-  IndexCard: 3
 --- !u!61 &2850155096587674337
 BoxCollider2D:
   m_ObjectHideFlags: 0

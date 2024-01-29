@@ -3,30 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AccessCard : MonoBehaviour
+public class AccessCard : MonoBehaviour, ICollectionFacilities
 {
+    [SerializeField] CollectionFacilities CollectionFacilitie;
+    public CollectionFacilities CollectionFacilities { get => CollectionFacilitie; }
+    public string TextString;
+    public int IndexCard;
     [SerializeField] GameObject Card;
     [SerializeField] Image Image;
     [SerializeField] List<Sprite> Sprite;
-    [SerializeField] int IndexCard;
+    
     GameObject CardImage;
 
     private void Start()
     {
-        Image.sprite = Sprite[IndexCard];
+        AppointmentIndex(IndexCard);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void AppointmentIndex(int Index)
     {
-        if (collision.GetComponent<Infentory>() != null)
+        Image.sprite = Sprite[Index];
+    }
+
+    public GameObject ImageCard()
+    {
+        CardImage = Instantiate(Card);
+        CardImage.GetComponent<CardUIInfentory>().IndexCard = IndexCard;
+        foreach (Transform child in CardImage.transform)
         {
-            CardImage = Instantiate(Card);
-            foreach(Transform child in CardImage.transform)
-            {
-                child.GetComponent<Image>().sprite = Image.sprite;
-            }
-            collision.GetComponent<Infentory>().AddInInfentory(CardImage.transform);
-            Destroy(gameObject);
+            child.GetComponent<Image>().sprite = Image.sprite;
         }
+        return CardImage;
     }
 }

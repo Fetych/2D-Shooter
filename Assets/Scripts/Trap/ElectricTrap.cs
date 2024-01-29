@@ -6,9 +6,11 @@ public class ElectricTrap : MonoBehaviour
 {
     [SerializeField] List<Health> Health;
     [SerializeField] float DamageTimer;
+    public Animator Animator;
 
     private void Start()
     {
+        Animator = GetComponent<Animator>();
         StartCoroutine(CheckHealth());
     }
 
@@ -46,5 +48,11 @@ public class ElectricTrap : MonoBehaviour
             }
         }
         StartCoroutine(CheckHealth());
+    }
+
+    public void OffTrap()
+    {
+        Animator.SetBool("On", false);
+        Destroy(this);
     }
 }

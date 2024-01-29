@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
-    public bool TheCellIsOccupied;
+    //public bool TheCellIsOccupied;
+    public GameObject CellObject;
 }
