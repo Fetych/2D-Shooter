@@ -11,7 +11,7 @@ public class Move : MonoBehaviour
     Animator Animator;
     PlayerControl PlayerControl;
     bool facing = true;
-    bool Run;
+    public bool Sit;
     int IndexSpeed = 1;
     Vector2 MoveDirection;
 
@@ -40,11 +40,15 @@ public class Move : MonoBehaviour
     private void Update()
     {
         MoveDirection = PlayerControl.Player.Move.ReadValue<Vector2>();
-        HorizontalMove();
+        if(Sit == false && GetComponent<Shot>().Shooting == false)
+        {
+            HorizontalMove();
+        }
     }
     private void FixedUpdate()
     {
-        GetComponent<Stats>().Rigidbody.velocity = new Vector2(MoveDirection.x * GetComponent<Stats>().Speed * IndexSpeed, GetComponent<Stats>().Rigidbody.velocity.y);
+        if (Sit == false && GetComponent<Shot>().Shooting == false)
+            GetComponent<Stats>().Rigidbody.velocity = new Vector2(MoveDirection.x * GetComponent<Stats>().Speed * IndexSpeed, GetComponent<Stats>().Rigidbody.velocity.y);
     }
 
     void HorizontalMove()
@@ -105,6 +109,7 @@ public class Move : MonoBehaviour
         facing = !facing;
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
+        GetComponent<Shot>().BullIndex = (int)scaler.x;
         transform.localScale = scaler;
     }
 
@@ -121,6 +126,7 @@ public class Move : MonoBehaviour
     }
     void SitDown(bool Sit)
     {
+        this.Sit = Sit;
         if (Sit)
         {
             Animator.SetBool("Walk", false);

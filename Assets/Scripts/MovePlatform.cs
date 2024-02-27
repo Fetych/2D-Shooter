@@ -21,7 +21,7 @@ public class MovePlatform : MonoBehaviour
         {
             if (direction.y == 1 && transform.position.y >= targetPositions[0].position.y || direction.y == -1 && transform.position.y <= targetPositions[1].position.y )
             {
-                Debug.Log(0);
+                //Debug.Log(0);
                 canMove = false;
                 direction = -direction;
             }

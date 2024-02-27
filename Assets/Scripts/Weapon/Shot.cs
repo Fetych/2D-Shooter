@@ -9,7 +9,7 @@ public class Shot : MonoBehaviour
     Animator Animator;
     [SerializeField] AnimationClip Recharg;
     public int WeaponShop, Left;
-    bool Reload = false, CaneFire = true, Bullets = false;
+    public bool Reload = false, CaneFire = true, Bullets = false, Shooting;
     GameObject SpawnBullet;
     public float Offset, RechargeTimer;
     public int BullIndex;
@@ -47,9 +47,11 @@ public class Shot : MonoBehaviour
     {
         if (Reload)
         {
+            Shooting = true;
             ReloadFillAmount.fillAmount += Time.deltaTime / RechargeTimer;
             if (ReloadFillAmount.fillAmount == 1)
             {
+                Shooting = false;
                 Ammo();
                 CaneFire = true;
                 Animator.SetBool("Recharge", false);
@@ -58,9 +60,10 @@ public class Shot : MonoBehaviour
     }
     void Shots(bool Fire)
     {
+        Shooting = Fire;
         if (Fire && CaneFire && Left > 0)
-        {
-            Animator.SetBool("Fire", true); 
+        {          
+            Animator.SetBool("Fire", true);
         }
         else
         {
@@ -73,29 +76,33 @@ public class Shot : MonoBehaviour
         TextAmmo.text = Left.ToString();
         ReloadAmount(false);
     }
-    public void AmmoText()
-    {
-        if(Left > 0)
-            Left--;        
-        if (Left == 0)
-        {
-            Animator.SetBool("Fire", false);
-            CaneFire = false;
-            Reload = true;
-        }
-    }
+    //public void AmmoText()
+    //{
+    //    if(Left > 0)
+    //        Left--;        
+    //    if (Left == 0)
+    //    {
+    //        Animator.SetBool("Fire", false);
+    //        CaneFire = false;
+    //        Reload = true;
+    //    }
+    //}
     public void Fire()
-    {
-        TextAmmo.text = Left.ToString();
+    {        
         SpawnBullet = Instantiate(Bullet, SpawnTransformShot.transform.position, transform.rotation);
         SpawnBullet.GetComponent<Bullet>().Damage = Stats.Damage;
         SpawnBullet.GetComponent<Bullet>().BulletMask = Stats.LayerMask;
-        SpawnBullet.GetComponent<Bullet>().Index = BullIndex;        
+        SpawnBullet.GetComponent<Bullet>().Index = BullIndex;
+        if (Left > 0)
+            Left--;
         if (Left == 0)
         {
             Animator.SetBool("Recharge", true);
             Reload = true;
+            Animator.SetBool("Fire", false);
+            CaneFire = false;
         }
+        TextAmmo.text = Left.ToString();
     }
     void ReloadAmount(bool Active)
     {

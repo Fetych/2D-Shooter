@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TextHP;
     [SerializeField] private Image HPFillAmount;
     [SerializeField] private float MaxHP, CurrentHP;
+    public bool Dead;
 
     void Awake()        
     {
@@ -28,14 +29,16 @@ public class Health : MonoBehaviour
             CurrentHP -= Damage;
             HPFillAmount.fillAmount = CurrentHP / MaxHP;
             TextHP.text = $"{CurrentHP}/{MaxHP}";
-            if(CurrentHP - Damage <= 0)
+            if(CurrentHP == 0)
             {
                 Animator.SetBool("Death", true);
+                Dead = true;
             }
         }
         else
         {
             Animator.SetBool("Death", true);
+            Dead = true;
         }
     }
 
